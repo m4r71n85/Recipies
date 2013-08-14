@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reciepes.Data", "Reciepes.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Api", "Recipies.Api\Recipies.Api.csproj", "{95445CDD-3D16-4189-96CD-C13BBA56FF01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Repository", "Recipies.Repository\Recipies.Repository.csproj", "{7F61E934-AADB-4B23-A6CA-F842880F562F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F61E934-AADB-4B23-A6CA-F842880F562F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F61E934-AADB-4B23-A6CA-F842880F562F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F61E934-AADB-4B23-A6CA-F842880F562F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F61E934-AADB-4B23-A6CA-F842880F562F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
