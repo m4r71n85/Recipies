@@ -7,25 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Reciepes.Data
+namespace Recipies.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Recipy
     {
-        public User()
+        public Recipy()
         {
             this.Comments = new HashSet<Comment>();
-            this.Recipies = new HashSet<Recipy>();
+            this.Steps = new HashSet<Step>();
         }
     
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string NickName { get; set; }
-        public string SessionKey { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Rating { get; set; }
+        public Nullable<int> User_UserID { get; set; }
+        public string Description { get; set; }
+        public string ImagesFolderUrl { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Recipy> Recipies { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Step> Steps { get; set; }
     }
 }

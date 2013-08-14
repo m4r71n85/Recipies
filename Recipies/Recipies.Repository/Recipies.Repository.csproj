@@ -51,14 +51,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Reciepes.Data\Reciepes.Data.csproj">
-      <Project>{06262abc-4541-41d4-8d23-8f69800bb0ab}</Project>
-      <Name>Reciepes.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Recipies.Data\Recipies.Data.csproj">
+      <Project>{ef43bc51-57cd-435c-b05a-6ea1cb95908c}</Project>
+      <Name>Recipies.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-using Reciepes.Data;
+using Recipies.Data;
 
 namespace Recipies.Api.Controllers
 {

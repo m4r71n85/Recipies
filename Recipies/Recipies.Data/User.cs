@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Reciepes.Data
+namespace Recipies.Data
 {
     using System;
     using System.Collections.Generic;
@@ -24,6 +24,7 @@ namespace Reciepes.Data
         public string UserName { get; set; }
         public string NickName { get; set; }
         public string SessionKey { get; set; }
+        public string AuthCode { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Recipy> Recipies { get; set; }

@@ -12,7 +12,6 @@
           <EntitySet Name="Recipies" EntityType="Recipies.Model.Store.Recipies" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StepActions" EntityType="Recipies.Model.Store.StepActions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Steps" EntityType="Recipies.Model.Store.Steps" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="Recipies.Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="Recipies.Model.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_dbo_Comments_dbo_Recipies_Recepie_Id" Association="Recipies.Model.Store.FK_dbo_Comments_dbo_Recipies_Recepie_Id">
             <End Role="Recipies" EntitySet="Recipies" />
@@ -98,16 +97,6 @@
           <Property Name="Recepie_Id" Type="int" />
           <Property Name="StepAction_Id" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -331,7 +320,6 @@
           <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="NickName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="SessionKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="AuthCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Users_User_UserID" FromRole="Users" ToRole="Comments" />
           <NavigationProperty Name="Recipies" Relationship="Recipies.Model.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Users" ToRole="Recipies" />
         </EntityType>
@@ -487,17 +475,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Recipies.Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Recipies.Model.User">
               <MappingFragment StoreEntitySet="Users">
@@ -505,7 +482,6 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="NickName" ColumnName="NickName" />
                 <ScalarProperty Name="SessionKey" ColumnName="SessionKey" />
-                <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

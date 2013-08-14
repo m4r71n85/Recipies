@@ -7,25 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Reciepes.Data
+namespace Recipies.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Product
     {
-        public User()
+        public Product()
         {
-            this.Comments = new HashSet<Comment>();
-            this.Recipies = new HashSet<Recipy>();
+            this.CookingProducts = new HashSet<CookingProduct>();
         }
     
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string NickName { get; set; }
-        public string SessionKey { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int QuantityType { get; set; }
     
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Recipy> Recipies { get; set; }
+        public virtual ICollection<CookingProduct> CookingProducts { get; set; }
     }
 }

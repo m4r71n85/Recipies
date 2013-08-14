@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
-using Reciepes.Data;
+using Recipies.Data;
 using Recipies.Api.Controllers;
 using Recipies.Repository;
 
