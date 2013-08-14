@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Model", "Recipies.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reciepes.Data", "Reciepes.Data\Reciepes.Data.csproj", "{7E30EEF0-6374-4098-9223-7F54390242E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Client", "Recipies.Client\Recipies.Client.csproj", "{DAAC6885-286E-4B03-87B3-4E080507DC01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Api", "Recipies.Api\Recipies.Api.csproj", "{95445CDD-3D16-4189-96CD-C13BBA56FF01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,10 @@ Global
 		{7E30EEF0-6374-4098-9223-7F54390242E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E30EEF0-6374-4098-9223-7F54390242E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E30EEF0-6374-4098-9223-7F54390242E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95445CDD-3D16-4189-96CD-C13BBA56FF01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
