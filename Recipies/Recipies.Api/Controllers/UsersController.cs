@@ -10,9 +10,11 @@ using System.Web;
 using System.Web.Http;
 using Reciepes.Data;
 using Recipies.Repository;
+using System.Web.Http.Cors;
 
 namespace Recipies.Api.Controllers
 {
+    [EnableCors(origins: "http://myclient.azurewebsites.net", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
         private IRepository<User, string> repository;
