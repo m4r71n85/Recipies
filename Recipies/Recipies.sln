@@ -1,7 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Model", "Recipies.Model\Recipies.Model.csproj", "{B255D8D3-E13A-4D97-9A0A-8FB89EE1C018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reciepes.Data", "Reciepes.Data\Reciepes.Data.csproj", "{7E30EEF0-6374-4098-9223-7F54390242E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recipies.Client", "Recipies.Client\Recipies.Client.csproj", "{DAAC6885-286E-4B03-87B3-4E080507DC01}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B255D8D3-E13A-4D97-9A0A-8FB89EE1C018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B255D8D3-E13A-4D97-9A0A-8FB89EE1C018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B255D8D3-E13A-4D97-9A0A-8FB89EE1C018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B255D8D3-E13A-4D97-9A0A-8FB89EE1C018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E30EEF0-6374-4098-9223-7F54390242E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E30EEF0-6374-4098-9223-7F54390242E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E30EEF0-6374-4098-9223-7F54390242E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E30EEF0-6374-4098-9223-7F54390242E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAAC6885-286E-4B03-87B3-4E080507DC01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
