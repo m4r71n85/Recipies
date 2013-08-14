@@ -22,6 +22,15 @@ namespace Recipies.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ConfigureApi(GlobalConfiguration.Configuration);
+
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        }
+
+        private void ConfigureApi(HttpConfiguration httpConfiguration)
+        {
+            httpConfiguration.DependencyResolver = new DbDependencyResolver();
         }
     }
 }

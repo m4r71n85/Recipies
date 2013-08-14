@@ -6,48 +6,40 @@ using System.Linq;
 
 namespace Recipies.Repository
 {
-    public class DbUsersRepository : IRepository<User,string>
+    public class DbUsersRepository : GeneralRepository<User, string>
     {
-        private db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext;
-
         public DbUsersRepository(db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext)
+            : base(dbContext)
         {
-            this.dbContext = dbContext;
         }
 
-        public User Add(User item)
+        public override User Add(User item)
         {
             User returnedUser = this.dbContext.Users.Add(item);
             this.dbContext.SaveChanges();
             return returnedUser;
         }
 
-        public void Update(int id, User item)
+        public override User Remove(int id)
         {
-            this.dbContext.Entry(item).State = EntityState.Modified;
+            User user = this.dbContext.Users.Remove(this.dbContext.Users.Find(id));
             this.dbContext.SaveChanges();
+            return user;
         }
 
-        public void Remove(int id)
-        {
-            this.dbContext.Users.Remove(this.dbContext.Users.Find(id));
-            this.dbContext.SaveChanges();
-        }
-
-        public User GetById(int id)
+        public override User GetById(int id)
         {
             return this.dbContext.Users.Where(x => x.UserID == id).Select(x => x).FirstOrDefault();
         }
 
-        public IEnumerable<User> GetAll()
+        public override IEnumerable<User> GetAll()
         {
             return this.dbContext.Users.AsEnumerable();
         }
 
-        public bool Find(string userName)
+        public override User Find(string userName)
         {
-            this.dbContext.Users.Single(x => x.UserName == userName);
-            return true;
+            return this.dbContext.Users.Single(x => x.UserName == userName);
         }
     }
 }

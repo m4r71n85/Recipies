@@ -1,10 +1,7 @@
 ﻿using Reciepes.Data;
 using Recipies.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Recipies.ConsoleClient
 {
@@ -21,7 +18,18 @@ namespace Recipies.ConsoleClient
                     AuthCode = 438
                 });
 
+            rep.Add(new User
+                {
+                    UserID = 200,
+                    UserName = "pesho",
+                    AuthCode = 32
+                });
 
+            var data = rep.GetAll();
+            foreach (var item in data)
+            {
+                Console.WriteLine(item.UserName);
+            }
         }
     }
 }

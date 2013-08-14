@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Recipies.Repository
 {
@@ -9,9 +8,9 @@ namespace Recipies.Repository
 	{
 		T Add(T item);
 		void Update(int id, T item);
-		void Remove(int id);
+		T Remove(int id);
 		T GetById(int id);
 		IEnumerable<T> GetAll();
-        bool Find(V item);
+        T Find(V item);
 	}
 }

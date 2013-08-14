@@ -9,23 +9,29 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Reciepes.Data;
+using Recipies.Repository;
 
 namespace Recipies.Api.Controllers
 {
     public class UsersController : ApiController
     {
-        private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
+        private IRepository<User, string> repository;
+
+        public UsersController(IRepository<User, string> repository)
+        {
+            this.repository = repository;
+        }
 
         // GET api/Users
         public IEnumerable<User> GetUsers()
         {
-            return db.Users.AsEnumerable();
+            return this.repository.GetAll();
         }
 
         // GET api/Users/5
 		public User GetUser(int id)
         {
-            User user = db.Users.Find(id);
+            User user = this.repository.GetById(id);
             if (user == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -39,13 +45,11 @@ namespace Recipies.Api.Controllers
         {
             if (ModelState.IsValid && id == user.UserID)
             {
-                db.Entry(user).State = EntityState.Modified;
-
                 try
                 {
-                    db.SaveChanges();
+                    this.repository.Update(id, user);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DBConcurrencyException)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
@@ -63,9 +67,7 @@ namespace Recipies.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-
+                this.repository.Add(user);
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
                 return response;
@@ -79,19 +81,16 @@ namespace Recipies.Api.Controllers
         // DELETE api/Users/5
 		public HttpResponseMessage DeleteUser(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            db.Users.Remove(user);
-
+            User user = null;
             try
             {
-                db.SaveChanges();
+                user = this.repository.Remove(id);
+                if (user == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
@@ -101,7 +100,6 @@ namespace Recipies.Api.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
             base.Dispose(disposing);
         }
     }
