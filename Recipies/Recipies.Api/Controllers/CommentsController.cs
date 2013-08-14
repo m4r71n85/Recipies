@@ -12,7 +12,7 @@ using Reciepes.Data;
 
 namespace Recipies.Api.Controllers
 {
-    public class CommentsController : ApiController
+    public class CommentsController : ApiController 
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
 
