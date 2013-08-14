@@ -12,34 +12,34 @@ using Reciepes.Data;
 
 namespace Recipies.Api.Controllers
 {
-    public class RecipiesController : ApiController
+    public class CookingProductController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
 
-        // GET api/Recipies
-        public IEnumerable<Recipy> GetRecipies()
+        // GET api/CookingProduct
+        public IEnumerable<CookingProduct> GetCookingProducts()
         {
-            return db.Recipies.AsEnumerable();
+            return db.CookingProducts.AsEnumerable();
         }
 
-        // GET api/Recipies/5
-        public Recipy GetRecipy(int id)
+        // GET api/CookingProduct/5
+        public CookingProduct GetCookingProduct(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            CookingProduct cookingproduct = db.CookingProducts.Find(id);
+            if (cookingproduct == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return recipy;
+            return cookingproduct;
         }
 
-        // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, Recipy recipy)
+        // PUT api/CookingProduct/5
+        public HttpResponseMessage PutCookingProduct(int id, CookingProduct cookingproduct)
         {
-            if (ModelState.IsValid && id == recipy.Id)
+            if (ModelState.IsValid && id == cookingproduct.Id)
             {
-                db.Entry(recipy).State = EntityState.Modified;
+                db.Entry(cookingproduct).State = EntityState.Modified;
 
                 try
                 {
@@ -58,16 +58,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // POST api/Recipies
-        public HttpResponseMessage PostRecipy(Recipy recipy)
+        // POST api/CookingProduct
+        public HttpResponseMessage PostCookingProduct(CookingProduct cookingproduct)
         {
             if (ModelState.IsValid)
             {
-                db.Recipies.Add(recipy);
+                db.CookingProducts.Add(cookingproduct);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, cookingproduct);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = cookingproduct.Id }));
                 return response;
             }
             else
@@ -76,16 +76,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // DELETE api/Recipies/5
-        public HttpResponseMessage DeleteRecipy(int id)
+        // DELETE api/CookingProduct/5
+        public HttpResponseMessage DeleteCookingProduct(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            CookingProduct cookingproduct = db.CookingProducts.Find(id);
+            if (cookingproduct == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Recipies.Remove(recipy);
+            db.CookingProducts.Remove(cookingproduct);
 
             try
             {
@@ -96,7 +96,7 @@ namespace Recipies.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, recipy);
+            return Request.CreateResponse(HttpStatusCode.OK, cookingproduct);
         }
 
         protected override void Dispose(bool disposing)

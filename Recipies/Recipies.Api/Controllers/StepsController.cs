@@ -12,34 +12,34 @@ using Reciepes.Data;
 
 namespace Recipies.Api.Controllers
 {
-    public class RecipiesController : ApiController
+    public class StepsController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
 
-        // GET api/Recipies
-        public IEnumerable<Recipy> GetRecipies()
+        // GET api/Steps
+        public IEnumerable<Step> GetSteps()
         {
-            return db.Recipies.AsEnumerable();
+            return db.Steps.AsEnumerable();
         }
 
-        // GET api/Recipies/5
-        public Recipy GetRecipy(int id)
+        // GET api/Steps/5
+        public Step GetStep(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            Step step = db.Steps.Find(id);
+            if (step == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return recipy;
+            return step;
         }
 
-        // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, Recipy recipy)
+        // PUT api/Steps/5
+        public HttpResponseMessage PutStep(int id, Step step)
         {
-            if (ModelState.IsValid && id == recipy.Id)
+            if (ModelState.IsValid && id == step.Id)
             {
-                db.Entry(recipy).State = EntityState.Modified;
+                db.Entry(step).State = EntityState.Modified;
 
                 try
                 {
@@ -58,16 +58,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // POST api/Recipies
-        public HttpResponseMessage PostRecipy(Recipy recipy)
+        // POST api/Steps
+        public HttpResponseMessage PostStep(Step step)
         {
             if (ModelState.IsValid)
             {
-                db.Recipies.Add(recipy);
+                db.Steps.Add(step);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, step);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = step.Id }));
                 return response;
             }
             else
@@ -76,16 +76,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // DELETE api/Recipies/5
-        public HttpResponseMessage DeleteRecipy(int id)
+        // DELETE api/Steps/5
+        public HttpResponseMessage DeleteStep(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            Step step = db.Steps.Find(id);
+            if (step == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Recipies.Remove(recipy);
+            db.Steps.Remove(step);
 
             try
             {
@@ -96,7 +96,7 @@ namespace Recipies.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, recipy);
+            return Request.CreateResponse(HttpStatusCode.OK, step);
         }
 
         protected override void Dispose(bool disposing)

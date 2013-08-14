@@ -12,34 +12,34 @@ using Reciepes.Data;
 
 namespace Recipies.Api.Controllers
 {
-    public class RecipiesController : ApiController
+    public class ProductsController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
 
-        // GET api/Recipies
-        public IEnumerable<Recipy> GetRecipies()
+        // GET api/Products
+        public IEnumerable<Product> GetProducts()
         {
-            return db.Recipies.AsEnumerable();
+            return db.Products.AsEnumerable();
         }
 
-        // GET api/Recipies/5
-        public Recipy GetRecipy(int id)
+        // GET api/Products/5
+        public Product GetProduct(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return recipy;
+            return product;
         }
 
-        // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, Recipy recipy)
+        // PUT api/Products/5
+        public HttpResponseMessage PutProduct(int id, Product product)
         {
-            if (ModelState.IsValid && id == recipy.Id)
+            if (ModelState.IsValid && id == product.Id)
             {
-                db.Entry(recipy).State = EntityState.Modified;
+                db.Entry(product).State = EntityState.Modified;
 
                 try
                 {
@@ -58,16 +58,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // POST api/Recipies
-        public HttpResponseMessage PostRecipy(Recipy recipy)
+        // POST api/Products
+        public HttpResponseMessage PostProduct(Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Recipies.Add(recipy);
+                db.Products.Add(product);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, product);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = product.Id }));
                 return response;
             }
             else
@@ -76,16 +76,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // DELETE api/Recipies/5
-        public HttpResponseMessage DeleteRecipy(int id)
+        // DELETE api/Products/5
+        public HttpResponseMessage DeleteProduct(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Recipies.Remove(recipy);
+            db.Products.Remove(product);
 
             try
             {
@@ -96,7 +96,7 @@ namespace Recipies.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, recipy);
+            return Request.CreateResponse(HttpStatusCode.OK, product);
         }
 
         protected override void Dispose(bool disposing)

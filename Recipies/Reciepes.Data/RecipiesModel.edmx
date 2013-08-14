@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Recipies.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RecipiesModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Recipies.Model.Store.Comments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CookingProducts" EntityType="Recipies.Model.Store.CookingProducts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="Recipies.Model.Store.Products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recipies" EntityType="Recipies.Model.Store.Recipies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StepActions" EntityType="Recipies.Model.Store.StepActions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Steps" EntityType="Recipies.Model.Store.Steps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="Recipies.Model.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="Recipies.Model.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_Comments_dbo_Recipies_Recepie_Id" Association="Recipies.Model.Store.FK_dbo_Comments_dbo_Recipies_Recepie_Id">
+            <End Role="Recipies" EntitySet="Recipies" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comments_dbo_Users_User_UserID" Association="Recipies.Model.Store.FK_dbo_Comments_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Products_Product_Id" Association="Recipies.Model.Store.FK_dbo_CookingProducts_dbo_Products_Product_Id">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="CookingProducts" EntitySet="CookingProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id" Association="Recipies.Model.Store.FK_dbo_CookingProducts_dbo_Steps_Step_Id">
+            <End Role="Steps" EntitySet="Steps" />
+            <End Role="CookingProducts" EntitySet="CookingProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Recipies_dbo_Users_User_UserID" Association="Recipies.Model.Store.FK_dbo_Recipies_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recipies" EntitySet="Recipies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Steps_dbo_Recipies_Recepie_Id" Association="Recipies.Model.Store.FK_dbo_Steps_dbo_Recipies_Recepie_Id">
+            <End Role="Recipies" EntitySet="Recipies" />
+            <End Role="Steps" EntitySet="Steps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id" Association="Recipies.Model.Store.FK_dbo_Steps_dbo_StepActions_StepAction_Id">
+            <End Role="StepActions" EntitySet="StepActions" />
+            <End Role="Steps" EntitySet="Steps" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="PostedTime" Type="datetime" Nullable="false" />
+          <Property Name="Recepie_Id" Type="int" />
+          <Property Name="User_UserID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="CookingProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="Step_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="QuantityType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="User_UserID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="StepActions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Steps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderOfPrecedence" Type="int" Nullable="false" />
+          <Property Name="PreparationTime" Type="datetime" Nullable="false" />
+          <Property Name="Degrees" Type="int" Nullable="false" />
+          <Property Name="Recepie_Id" Type="int" />
+          <Property Name="StepAction_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="NickName" Type="nvarchar(max)" />
+          <Property Name="SessionKey" Type="nvarchar(max)" />
+          <Property Name="AuthCode" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Comments_dbo_Recipies_Recepie_Id">
+          <End Role="Recipies" Type="Recipies.Model.Store.Recipies" Multiplicity="0..1" />
+          <End Role="Comments" Type="Recipies.Model.Store.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Recepie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comments_dbo_Users_User_UserID">
+          <End Role="Users" Type="Recipies.Model.Store.Users" Multiplicity="0..1" />
+          <End Role="Comments" Type="Recipies.Model.Store.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CookingProducts_dbo_Products_Product_Id">
+          <End Role="Products" Type="Recipies.Model.Store.Products" Multiplicity="0..1" />
+          <End Role="CookingProducts" Type="Recipies.Model.Store.CookingProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CookingProducts">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id">
+          <End Role="Steps" Type="Recipies.Model.Store.Steps" Multiplicity="0..1" />
+          <End Role="CookingProducts" Type="Recipies.Model.Store.CookingProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Steps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CookingProducts">
+              <PropertyRef Name="Step_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Recipies_dbo_Users_User_UserID">
+          <End Role="Users" Type="Recipies.Model.Store.Users" Multiplicity="0..1" />
+          <End Role="Recipies" Type="Recipies.Model.Store.Recipies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Recipies">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Steps_dbo_Recipies_Recepie_Id">
+          <End Role="Recipies" Type="Recipies.Model.Store.Recipies" Multiplicity="0..1" />
+          <End Role="Steps" Type="Recipies.Model.Store.Steps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Steps">
+              <PropertyRef Name="Recepie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id">
+          <End Role="StepActions" Type="Recipies.Model.Store.StepActions" Multiplicity="0..1" />
+          <End Role="Steps" Type="Recipies.Model.Store.Steps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StepActions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Steps">
+              <PropertyRef Name="StepAction_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Recipies.Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db03b09a81b82c44bcbe0ba21a008dd95cEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Recipies.Model.Comment" />
+          <EntitySet Name="CookingProducts" EntityType="Recipies.Model.CookingProduct" />
+          <EntitySet Name="Products" EntityType="Recipies.Model.Product" />
+          <EntitySet Name="Recipies" EntityType="Recipies.Model.Recipy" />
+          <EntitySet Name="StepActions" EntityType="Recipies.Model.StepAction" />
+          <EntitySet Name="Steps" EntityType="Recipies.Model.Step" />
+          <EntitySet Name="sysdiagrams" EntityType="Recipies.Model.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Recipies.Model.User" />
+          <AssociationSet Name="FK_dbo_Comments_dbo_Recipies_Recepie_Id" Association="Recipies.Model.FK_dbo_Comments_dbo_Recipies_Recepie_Id">
+            <End Role="Recipies" EntitySet="Recipies" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Comments_dbo_Users_User_UserID" Association="Recipies.Model.FK_dbo_Comments_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Products_Product_Id" Association="Recipies.Model.FK_dbo_CookingProducts_dbo_Products_Product_Id">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="CookingProducts" EntitySet="CookingProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id" Association="Recipies.Model.FK_dbo_CookingProducts_dbo_Steps_Step_Id">
+            <End Role="Steps" EntitySet="Steps" />
+            <End Role="CookingProducts" EntitySet="CookingProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Recipies_dbo_Users_User_UserID" Association="Recipies.Model.FK_dbo_Recipies_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recipies" EntitySet="Recipies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Steps_dbo_Recipies_Recepie_Id" Association="Recipies.Model.FK_dbo_Steps_dbo_Recipies_Recepie_Id">
+            <End Role="Recipies" EntitySet="Recipies" />
+            <End Role="Steps" EntitySet="Steps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id" Association="Recipies.Model.FK_dbo_Steps_dbo_StepActions_StepAction_Id">
+            <End Role="StepActions" EntitySet="StepActions" />
+            <End Role="Steps" EntitySet="Steps" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PostedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Recepie_Id" Type="Int32" />
+          <Property Name="User_UserID" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Recipy" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Recipies_Recepie_Id" FromRole="Comments" ToRole="Recipies" />
+          <NavigationProperty Name="User" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Users_User_UserID" FromRole="Comments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="CookingProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Product_Id" Type="Int32" />
+          <Property Name="Step_Id" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Recipies.Model.FK_dbo_CookingProducts_dbo_Products_Product_Id" FromRole="CookingProducts" ToRole="Products" />
+          <NavigationProperty Name="Step" Relationship="Recipies.Model.FK_dbo_CookingProducts_dbo_Steps_Step_Id" FromRole="CookingProducts" ToRole="Steps" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="QuantityType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CookingProducts" Relationship="Recipies.Model.FK_dbo_CookingProducts_dbo_Products_Product_Id" FromRole="Products" ToRole="CookingProducts" />
+        </EntityType>
+        <EntityType Name="Recipy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="User_UserID" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Comments" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Comments" />
+          <NavigationProperty Name="User" Relationship="Recipies.Model.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Recipies" ToRole="Users" />
+          <NavigationProperty Name="Steps" Relationship="Recipies.Model.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Steps" />
+        </EntityType>
+        <EntityType Name="StepAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Steps" Relationship="Recipies.Model.FK_dbo_Steps_dbo_StepActions_StepAction_Id" FromRole="StepActions" ToRole="Steps" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderOfPrecedence" Type="Int32" Nullable="false" />
+          <Property Name="PreparationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Degrees" Type="Int32" Nullable="false" />
+          <Property Name="Recepie_Id" Type="Int32" />
+          <Property Name="StepAction_Id" Type="Int32" />
+          <NavigationProperty Name="CookingProducts" Relationship="Recipies.Model.FK_dbo_CookingProducts_dbo_Steps_Step_Id" FromRole="Steps" ToRole="CookingProducts" />
+          <NavigationProperty Name="Recipy" Relationship="Recipies.Model.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Steps" ToRole="Recipies" />
+          <NavigationProperty Name="StepAction" Relationship="Recipies.Model.FK_dbo_Steps_dbo_StepActions_StepAction_Id" FromRole="Steps" ToRole="StepActions" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NickName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SessionKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AuthCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Users_User_UserID" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="Recipies" Relationship="Recipies.Model.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Users" ToRole="Recipies" />
+        </EntityType>
+        <Association Name="FK_dbo_Comments_dbo_Recipies_Recepie_Id">
+          <End Role="Recipies" Type="Recipies.Model.Recipy" Multiplicity="0..1" />
+          <End Role="Comments" Type="Recipies.Model.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Recepie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Comments_dbo_Users_User_UserID">
+          <End Role="Users" Type="Recipies.Model.User" Multiplicity="0..1" />
+          <End Role="Comments" Type="Recipies.Model.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CookingProducts_dbo_Products_Product_Id">
+          <End Role="Products" Type="Recipies.Model.Product" Multiplicity="0..1" />
+          <End Role="CookingProducts" Type="Recipies.Model.CookingProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CookingProducts">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id">
+          <End Role="Steps" Type="Recipies.Model.Step" Multiplicity="0..1" />
+          <End Role="CookingProducts" Type="Recipies.Model.CookingProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Steps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CookingProducts">
+              <PropertyRef Name="Step_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Recipies_dbo_Users_User_UserID">
+          <End Role="Users" Type="Recipies.Model.User" Multiplicity="0..1" />
+          <End Role="Recipies" Type="Recipies.Model.Recipy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Recipies">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Steps_dbo_Recipies_Recepie_Id">
+          <End Role="Recipies" Type="Recipies.Model.Recipy" Multiplicity="0..1" />
+          <End Role="Steps" Type="Recipies.Model.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Steps">
+              <PropertyRef Name="Recepie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id">
+          <End Role="StepActions" Type="Recipies.Model.StepAction" Multiplicity="0..1" />
+          <End Role="Steps" Type="Recipies.Model.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StepActions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Steps">
+              <PropertyRef Name="StepAction_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecipiesModelStoreContainer" CdmEntityContainer="db03b09a81b82c44bcbe0ba21a008dd95cEntities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="Recipies.Model.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="PostedTime" ColumnName="PostedTime" />
+                <ScalarProperty Name="Recepie_Id" ColumnName="Recepie_Id" />
+                <ScalarProperty Name="User_UserID" ColumnName="User_UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CookingProducts">
+            <EntityTypeMapping TypeName="Recipies.Model.CookingProduct">
+              <MappingFragment StoreEntitySet="CookingProducts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Recipies.Model.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="QuantityType" ColumnName="QuantityType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recipies">
+            <EntityTypeMapping TypeName="Recipies.Model.Recipy">
+              <MappingFragment StoreEntitySet="Recipies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="User_UserID" ColumnName="User_UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StepActions">
+            <EntityTypeMapping TypeName="Recipies.Model.StepAction">
+              <MappingFragment StoreEntitySet="StepActions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Steps">
+            <EntityTypeMapping TypeName="Recipies.Model.Step">
+              <MappingFragment StoreEntitySet="Steps">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderOfPrecedence" ColumnName="OrderOfPrecedence" />
+                <ScalarProperty Name="PreparationTime" ColumnName="PreparationTime" />
+                <ScalarProperty Name="Degrees" ColumnName="Degrees" />
+                <ScalarProperty Name="Recepie_Id" ColumnName="Recepie_Id" />
+                <ScalarProperty Name="StepAction_Id" ColumnName="StepAction_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Recipies.Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Recipies.Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="SessionKey" ColumnName="SessionKey" />
+                <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

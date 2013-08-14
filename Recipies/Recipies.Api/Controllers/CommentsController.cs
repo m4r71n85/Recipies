@@ -12,34 +12,34 @@ using Reciepes.Data;
 
 namespace Recipies.Api.Controllers
 {
-    public class RecipiesController : ApiController
+    public class CommentsController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
 
-        // GET api/Recipies
-        public IEnumerable<Recipy> GetRecipies()
+        // GET api/Comments
+        public IEnumerable<Comment> GetComments()
         {
-            return db.Recipies.AsEnumerable();
+            return db.Comments.AsEnumerable();
         }
 
-        // GET api/Recipies/5
-        public Recipy GetRecipy(int id)
+        // GET api/Comments/5
+        public Comment GetComment(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return recipy;
+            return comment;
         }
 
-        // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, Recipy recipy)
+        // PUT api/Comments/5
+        public HttpResponseMessage PutComment(int id, Comment comment)
         {
-            if (ModelState.IsValid && id == recipy.Id)
+            if (ModelState.IsValid && id == comment.Id)
             {
-                db.Entry(recipy).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Modified;
 
                 try
                 {
@@ -58,16 +58,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // POST api/Recipies
-        public HttpResponseMessage PostRecipy(Recipy recipy)
+        // POST api/Comments
+        public HttpResponseMessage PostComment(Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Recipies.Add(recipy);
+                db.Comments.Add(comment);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, comment);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = comment.Id }));
                 return response;
             }
             else
@@ -76,16 +76,16 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // DELETE api/Recipies/5
-        public HttpResponseMessage DeleteRecipy(int id)
+        // DELETE api/Comments/5
+        public HttpResponseMessage DeleteComment(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Recipies.Remove(recipy);
+            db.Comments.Remove(comment);
 
             try
             {
@@ -96,7 +96,7 @@ namespace Recipies.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, recipy);
+            return Request.CreateResponse(HttpStatusCode.OK, comment);
         }
 
         protected override void Dispose(bool disposing)
