@@ -23,7 +23,7 @@ namespace Recipies.Api.Controllers
         }
 
         // GET api/Users/5
-        public User GetUser(string id)
+		public User GetUser(int id)
         {
             User user = db.Users.Find(id);
             if (user == null)
@@ -35,7 +35,7 @@ namespace Recipies.Api.Controllers
         }
 
         // PUT api/Users/5
-        public HttpResponseMessage PutUser(string id, User user)
+        public HttpResponseMessage PutUser(int id, User user)
         {
             if (ModelState.IsValid && id == user.UserID)
             {
@@ -77,7 +77,7 @@ namespace Recipies.Api.Controllers
         }
 
         // DELETE api/Users/5
-        public HttpResponseMessage DeleteUser(string id)
+		public HttpResponseMessage DeleteUser(int id)
         {
             User user = db.Users.Find(id);
             if (user == null)

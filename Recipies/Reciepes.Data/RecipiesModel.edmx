@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Recipies.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Recipies.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="RecipiesModelStoreContainer">
           <EntitySet Name="Comments" EntityType="Recipies.Model.Store.Comments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CookingProducts" EntityType="Recipies.Model.Store.CookingProducts" store:Type="Tables" Schema="dbo" />
@@ -51,7 +51,7 @@
           <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="PostedTime" Type="datetime" Nullable="false" />
           <Property Name="Recepie_Id" Type="int" />
-          <Property Name="User_UserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="User_UserID" Type="int" />
         </EntityType>
         <EntityType Name="CookingProducts">
           <Key>
@@ -77,7 +77,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Rating" Type="int" Nullable="false" />
-          <Property Name="User_UserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="User_UserID" Type="int" />
         </EntityType>
         <EntityType Name="StepActions">
           <Key>
@@ -111,7 +111,7 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar(max)" />
           <Property Name="NickName" Type="nvarchar(max)" />
           <Property Name="SessionKey" Type="nvarchar(max)" />
@@ -201,8 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Recipies.Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -252,7 +251,7 @@
           <Property Name="Text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="PostedTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Recepie_Id" Type="Int32" />
-          <Property Name="User_UserID" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="User_UserID" Type="Int32" />
           <NavigationProperty Name="Recipy" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Recipies_Recepie_Id" FromRole="Comments" ToRole="Recipies" />
           <NavigationProperty Name="User" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Users_User_UserID" FromRole="Comments" ToRole="Users" />
         </EntityType>
@@ -283,7 +282,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Rating" Type="Int32" Nullable="false" />
-          <Property Name="User_UserID" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="User_UserID" Type="Int32" />
           <NavigationProperty Name="Comments" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Comments" />
           <NavigationProperty Name="User" Relationship="Recipies.Model.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Recipies" ToRole="Users" />
           <NavigationProperty Name="Steps" Relationship="Recipies.Model.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Steps" />
@@ -324,7 +323,7 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="NickName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="SessionKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />

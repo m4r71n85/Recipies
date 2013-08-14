@@ -18,7 +18,7 @@ namespace Reciepes.Data
         public string Text { get; set; }
         public System.DateTime PostedTime { get; set; }
         public Nullable<int> Recepie_Id { get; set; }
-        public string User_UserID { get; set; }
+        public Nullable<int> User_UserID { get; set; }
     
         public virtual Recipy Recipy { get; set; }
         public virtual User User { get; set; }

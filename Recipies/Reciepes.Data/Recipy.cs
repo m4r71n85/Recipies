@@ -23,7 +23,7 @@ namespace Reciepes.Data
         public int Id { get; set; }
         public string Name { get; set; }
         public int Rating { get; set; }
-        public string User_UserID { get; set; }
+        public Nullable<int> User_UserID { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual User User { get; set; }

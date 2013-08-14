@@ -20,7 +20,7 @@ namespace Reciepes.Data
             this.Recipies = new HashSet<Recipy>();
         }
     
-        public string UserID { get; set; }
+        public int UserID { get; set; }
         public string UserName { get; set; }
         public string NickName { get; set; }
         public string SessionKey { get; set; }
