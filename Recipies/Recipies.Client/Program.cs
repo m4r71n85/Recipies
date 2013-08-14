@@ -13,6 +13,7 @@ namespace Recipies.Client
         {
             RecipieContext dbContext = new RecipieContext();
 
+
             foreach (var item in dbContext.Comments)
             {
                 
