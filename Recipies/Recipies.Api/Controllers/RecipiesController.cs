@@ -9,11 +9,11 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Reciepes.Data;
-using System.Web.Http.Cors;
+//using System.Web.Http.Cors;
 
 namespace Recipies.Api.Controllers
 {
-    [EnableCors(origins: "http://myclient.azurewebsites.net", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http://myclient.azurewebsites.net", headers: "*", methods: "*")]
     public class RecipiesController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
