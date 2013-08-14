@@ -24,6 +24,7 @@ namespace Reciepes.Data
         public string Name { get; set; }
         public int Rating { get; set; }
         public Nullable<int> User_UserID { get; set; }
+        public string Description { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual User User { get; set; }

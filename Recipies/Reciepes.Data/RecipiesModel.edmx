@@ -78,6 +78,7 @@
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="Rating" Type="int" Nullable="false" />
           <Property Name="User_UserID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="StepActions">
           <Key>
@@ -96,6 +97,7 @@
           <Property Name="Degrees" Type="int" Nullable="false" />
           <Property Name="Recepie_Id" Type="int" />
           <Property Name="StepAction_Id" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -286,6 +288,7 @@
           <NavigationProperty Name="Comments" Relationship="Recipies.Model.FK_dbo_Comments_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Comments" />
           <NavigationProperty Name="User" Relationship="Recipies.Model.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Recipies" ToRole="Users" />
           <NavigationProperty Name="Steps" Relationship="Recipies.Model.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Steps" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StepAction">
           <Key>
@@ -308,6 +311,7 @@
           <NavigationProperty Name="CookingProducts" Relationship="Recipies.Model.FK_dbo_CookingProducts_dbo_Steps_Step_Id" FromRole="Steps" ToRole="CookingProducts" />
           <NavigationProperty Name="Recipy" Relationship="Recipies.Model.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Steps" ToRole="Recipies" />
           <NavigationProperty Name="StepAction" Relationship="Recipies.Model.FK_dbo_Steps_dbo_StepActions_StepAction_Id" FromRole="Steps" ToRole="StepActions" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -454,6 +458,7 @@
           <EntitySetMapping Name="Recipies">
             <EntityTypeMapping TypeName="Recipies.Model.Recipy">
               <MappingFragment StoreEntitySet="Recipies">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
@@ -472,6 +477,7 @@
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="Recipies.Model.Step">
               <MappingFragment StoreEntitySet="Steps">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderOfPrecedence" ColumnName="OrderOfPrecedence" />
                 <ScalarProperty Name="PreparationTime" ColumnName="PreparationTime" />
