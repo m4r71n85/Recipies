@@ -1,6 +1,5 @@
 namespace Reciepes.Data.Migrations
 {
-    using Recipies.Model;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -28,13 +27,6 @@ namespace Reciepes.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.Products.AddOrUpdate(
-             p => p.Name,
-             new Product { Name = "Tomato" },
-             new Product { Name = "Test" },
-             new Product { Name = "Test2" }
-           );
         }
     }
 }
