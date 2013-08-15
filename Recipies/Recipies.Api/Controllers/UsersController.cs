@@ -29,20 +29,22 @@ namespace Recipies.Api.Controllers
             {
                 try
                 {
-                    string sessionKey = null;
+                    User returnedUser = null;
                     if (login == "true")
                     {
-                        sessionKey = this.repository.Login(user);
+                        returnedUser = this.repository.Login(user);
                     }
 
-                    if (sessionKey == null)
+                    if (returnedUser == null)
                     {
                         return Request.CreateResponse(HttpStatusCode.BadRequest);
                     }
 
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, new ExposedKey()
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, new ExposedUser()
                     {
-                        SessionKey = sessionKey
+                        UserName = returnedUser.UserName,
+                        NickName = returnedUser.NickName,
+                        SessionKey = returnedUser.SessionKey
                     });
                     response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
                     return response;

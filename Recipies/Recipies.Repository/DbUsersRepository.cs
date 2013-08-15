@@ -23,7 +23,7 @@ namespace Recipies.Repository
             return BitConverter.ToString(cryptoTransformSHA1.ComputeHash(buffer)).Replace("-", "");
         }
 
-        public string Login(User item)
+        public User Login(User item)
         {
             User user = this.dbContext.Users
                 .Where(x => x.UserName == item.UserName && x.AuthCode == item.AuthCode)
@@ -34,7 +34,7 @@ namespace Recipies.Repository
                 string sessionKey = GetSessionKey(user.UserName + user.AuthCode + DateTime.Now.ToLongTimeString());
                 user.SessionKey = sessionKey;
                 dbContext.SaveChanges();
-                return sessionKey;
+                return user;
             }
             else
             {

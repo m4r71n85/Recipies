@@ -5,7 +5,7 @@ namespace Recipies.Repository
 {
     public interface IUserRepository<T>
     {
-        string Login(T item);
+        T Login(T item);
         void Logout(string sessionKey);
         string Register(T item);
         bool Find(T item);

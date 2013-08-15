@@ -38,8 +38,8 @@ namespace Recipies.Api.Controllers
 
         public class DropboxUploader
         {
-            private const string DropboxAppKey = "avebpvpe2pr4o85";
-            private const string DropboxAppSecret = "bz5ysp3dsw0xh6l";
+            private const string DropboxAppKey = "lbl22l1hwp69qkb";
+            private const string DropboxAppSecret = "2lhwlqhyjh7i0n3";
 
             private const string OAuthTokenFileName = "OAuthTokenFileName.txt";
 
