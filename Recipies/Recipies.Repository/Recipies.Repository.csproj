@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbCommentsRepository.cs" />
+    <Compile Include="DbCookingProductsRepository.cs" />
+    <Compile Include="DbProductsRepository.cs" />
+    <Compile Include="DbRecipieRepository.cs" />
+    <Compile Include="DbStepActionsRepository.cs" />
+    <Compile Include="DbStepsRepository.cs" />
     <Compile Include="DbUsersRepository.cs" />
     <Compile Include="GeneralRepository.cs" />
     <Compile Include="IRepository.cs" />

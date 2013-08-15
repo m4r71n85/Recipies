@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using Recipies.Data;
+using Recipies.Repository;
 using System.Web.Http.Cors;
 
 namespace Recipies.Api.Controllers
@@ -16,18 +15,23 @@ namespace Recipies.Api.Controllers
     [EnableCors(origins: "http://localhost:54830", headers: "*", methods: "*")]
     public class RecipiesController : ApiController
     {
-        private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
+        private IRepository<Recipy, string> repository;
+
+        public RecipiesController(IRepository<Recipy, string> repository)
+        {
+            this.repository = repository;
+        }
 
         // GET api/Recipies
         public IEnumerable<Recipy> GetRecipies()
         {
-            return db.Recipies.AsEnumerable();
+            return this.repository.GetAll();
         }
 
         // GET api/Recipies/5
         public Recipy GetRecipy(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
+            Recipy recipy = this.repository.GetById(id);
             if (recipy == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -41,13 +45,11 @@ namespace Recipies.Api.Controllers
         {
             if (ModelState.IsValid && id == recipy.Id)
             {
-                db.Entry(recipy).State = EntityState.Modified;
-
                 try
                 {
-                    db.SaveChanges();
+                    this.repository.Update(id, recipy);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
@@ -65,9 +67,7 @@ namespace Recipies.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Recipies.Add(recipy);
-                db.SaveChanges();
-
+                this.repository.Add(recipy);
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
                 return response;
@@ -81,19 +81,16 @@ namespace Recipies.Api.Controllers
         // DELETE api/Recipies/5
         public HttpResponseMessage DeleteRecipy(int id)
         {
-            Recipy recipy = db.Recipies.Find(id);
-            if (recipy == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            db.Recipies.Remove(recipy);
-
+            Recipy recipy = null;
             try
             {
-                db.SaveChanges();
+                recipy = this.repository.Remove(id);
+                if (recipy == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
@@ -103,7 +100,6 @@ namespace Recipies.Api.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
             base.Dispose(disposing);
         }
     }
