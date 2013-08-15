@@ -168,10 +168,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipiesController.cs" />
-    <Compile Include="Controllers\StepsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="App_Start\DbDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,7 +180,6 @@
     <Compile Include="Models\ExposedObjects\ExposedRecipyExtended.cs" />
     <Compile Include="Models\ExposedObjects\ExposedStep.cs" />
     <Compile Include="Models\ExposedObjects\ExposedUser.cs" />
-    <Compile Include="Models\ProvidedObjects\ProvidedRecipy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

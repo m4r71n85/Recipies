@@ -14,6 +14,19 @@ namespace Recipies.Repository
             this.dbContext = dbContext;
         }
 
+        public IEnumerable<Comment> ListComments(int id, string sessionKey)
+        {
+            User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();
+            if (user != null)
+            {
+                return this.dbContext.Recipies.Find(id).Comments.AsEnumerable();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public bool CreateComment(int id, string sessionKey, Comment item)
         {
             User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();

@@ -41,6 +41,22 @@ namespace Recipies.Api.Controllers
             return recipyModels.AsEnumerable();
         }
 
+        public IEnumerable<ExposedComment> GetComments(int id, string sessionKey)
+        {
+            var commentsEntities = this.repository.ListComments(id, sessionKey);
+
+            var comments =
+                from comment in commentsEntities
+                select new ExposedComment()
+                {
+                    Text = comment.Text,
+                    PostedTime = comment.PostedTime,
+                    CreatedBy = comment.User.UserName
+                };
+
+            return comments.AsEnumerable();
+        }
+
         // GET api/Recipies/5
         public ExposedRecipyExtended GetRecipy(int id)
         {
@@ -60,14 +76,6 @@ namespace Recipies.Api.Controllers
                 Rating = recipy.Rating,
 				RecipyID = recipy.Id,
                 ImagesFolder = recipy.ImagesFolderUrl,
-                Comments =
-                    from comment in recipy.Comments
-                    select new ExposedComment()
-                    {
-                        PostedTime = comment.PostedTime,
-                        Text = comment.Text,
-                        CreatedBy = comment.User.UserName
-                    },
                 Steps =
                     from step in recipy.Steps
                     select new ExposedStep()

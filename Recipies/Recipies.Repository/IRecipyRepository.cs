@@ -12,5 +12,6 @@ namespace Recipies.Repository
         IEnumerable<T> GetAll();
         void Vote(int id, string sessionKey, string vote);
         bool CreateComment(int id, string sessionKey, Comment item);
+        IEnumerable<Comment> ListComments(int id, string sessionKey);
     }
 }
