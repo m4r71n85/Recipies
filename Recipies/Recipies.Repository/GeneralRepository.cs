@@ -48,5 +48,9 @@ namespace Recipies.Repository
         public abstract IEnumerable<T> GetAll();
 
         public abstract T Find(V item);
+
+        public virtual void Vote(int id, int? sessionKey, bool vote)
+        {
+        }
     }
 }

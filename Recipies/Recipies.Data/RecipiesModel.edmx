@@ -74,7 +74,7 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NickName" Type="nvarchar(max)" />
           <Property Name="SessionKey" Type="nvarchar(max)" />
           <Property Name="AuthCode" Type="nvarchar(max)" Nullable="false" />
@@ -247,7 +247,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="OrderOfPrecedence" Type="Int32" Nullable="false" />
-          <Property Name="PreparationTime" Type="Time" Nullable="false" />
+          <Property Name="PreparationTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Recepie_Id" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Recipy" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Steps" ToRole="Recipies" />
@@ -267,9 +267,9 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="NickName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="SessionKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SessionKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="AuthCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Comments" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Comments_dbo_Users_User_UserID" FromRole="Users" ToRole="Comments" />
           <NavigationProperty Name="Recipies" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Users" ToRole="Recipies" />

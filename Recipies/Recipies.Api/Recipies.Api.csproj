@@ -179,6 +179,7 @@
     </Compile>
     <Compile Include="Models\ExposedObjects\ExposedComment.cs" />
     <Compile Include="Models\ExposedObjects\ExposedRecipy.cs" />
+    <Compile Include="Models\ExposedObjects\ExposedRecipyExtended.cs" />
     <Compile Include="Models\ExposedObjects\ExposedStep.cs" />
     <Compile Include="Models\ExposedObjects\ExposedUser.cs" />
     <Compile Include="Models\ProvidedObjects\ProvidedRecipy.cs" />

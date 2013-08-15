@@ -9,6 +9,6 @@ namespace Recipies.Api.Models.ExposedObjects
     {
         public string Text { get; set; }
         public DateTime PostedTime { get; set; }
-        public ExposedUser User { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

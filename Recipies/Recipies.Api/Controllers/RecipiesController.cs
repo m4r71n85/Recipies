@@ -41,7 +41,7 @@ namespace Recipies.Api.Controllers
         }
 
         // GET api/Recipies/5
-        public Recipy GetRecipy(int id)
+        public ExposedRecipyExtended GetRecipy(int id)
         {
             Recipy recipy = this.repository.GetById(id);
             if (recipy == null)
@@ -49,17 +49,45 @@ namespace Recipies.Api.Controllers
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return recipy;
+            int orderIndex = 0;
+            ExposedRecipyExtended expRecipy = new ExposedRecipyExtended()
+            {
+                Name = recipy.Name,
+                Description = recipy.Description,
+                CreatedBy = recipy.User.UserName,
+                CookingMinutes = recipy.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime.Minutes),
+                Rating = recipy.Rating,
+                ImagesFolder = recipy.ImagesFolderUrl,
+                Comments =
+                    from comment in recipy.Comments
+                    select new ExposedComment()
+                    {
+                        PostedTime = comment.PostedTime,
+                        Text = comment.Text,
+                        CreatedBy = comment.User.UserName
+                    },
+                Steps =
+                    from step in recipy.Steps
+                    select new ExposedStep()
+                    {
+                        Description = step.Description,
+                        PreparationTime = step.PreparationTime.Minutes,
+                        OrderOfPrecedence = orderIndex++
+                    }
+            };
+
+
+            return expRecipy;
         }
 
         // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, Recipy recipy)
+        public HttpResponseMessage PutRecipy(int id, int? sessionkey, [FromBody]bool vote)
         {
-            if (ModelState.IsValid && id == recipy.Id)
+            if (ModelState.IsValid)
             {
                 try
                 {
-                    this.repository.Update(id, recipy);
+                    this.repository.Vote(id, sessionkey, vote);
                 }
                 catch (Exception)
                 {
@@ -74,11 +102,12 @@ namespace Recipies.Api.Controllers
             }
         }
 
-        // POST api/Recipies
-        public HttpResponseMessage PostRecipy(Recipy recipy)
+        // POST api/Recipies/5
+        public HttpResponseMessage PostRecipy(int userId, Recipy recipy)
         {
             if (ModelState.IsValid)
             {
+                recipy.User_UserID = userId;
                 this.repository.Add(recipy);
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));

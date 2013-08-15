@@ -12,5 +12,6 @@ namespace Recipies.Repository
 		T GetById(int id);
 		IEnumerable<T> GetAll();
         T Find(V item);
+        void Vote(int id, int? sessionKey, bool vote);
 	}
 }

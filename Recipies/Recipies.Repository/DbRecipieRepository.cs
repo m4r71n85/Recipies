@@ -40,5 +40,23 @@ namespace Recipies.Repository
         {
             return this.dbContext.Recipies.Single(x => x.Name == item);
         }
+
+        public override void Vote(int id, int? sessionKey, bool vote)
+        {
+            User user = this.dbContext.Users.Find(sessionKey);
+            if (user != null)
+            {
+                Recipy recipy = this.dbContext.Recipies.Find(id);
+                if (vote)
+                {
+                    recipy.Rating++;
+                }
+                else
+                {
+                    recipy.Rating--;
+                }
+                this.dbContext.SaveChanges();
+            }
+        }
     }
 }
