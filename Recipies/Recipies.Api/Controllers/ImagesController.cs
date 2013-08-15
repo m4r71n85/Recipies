@@ -19,7 +19,7 @@ namespace Recipies.Api.Controllers
                 HttpPostedFile file = current.Request.Files[i];
                 Stream stream = file.InputStream;
 
-                using (var fileStream = File.Create(file.FileName))
+                using (var fileStream = File.Create(Path.GetTempPath() + '/' + file.FileName))
                 {
                     stream.CopyTo(fileStream);
                 }  
