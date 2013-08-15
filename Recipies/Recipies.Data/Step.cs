@@ -14,21 +14,12 @@ namespace Recipies.Data
     
     public partial class Step
     {
-        public Step()
-        {
-            this.CookingProducts = new HashSet<CookingProduct>();
-        }
-    
         public int Id { get; set; }
         public int OrderOfPrecedence { get; set; }
         public System.DateTime PreparationTime { get; set; }
-        public int Degrees { get; set; }
         public Nullable<int> Recepie_Id { get; set; }
-        public Nullable<int> StepAction_Id { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<CookingProduct> CookingProducts { get; set; }
         public virtual Recipy Recipy { get; set; }
-        public virtual StepAction StepAction { get; set; }
     }
 }

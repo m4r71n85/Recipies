@@ -4,13 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="db03b09a81b82c44bcbe0ba21a008dd95cModelStoreContainer">
           <EntitySet Name="Comments" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Comments" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CookingProducts" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.CookingProducts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Products" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Recipies" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Recipies" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="StepActions" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.StepActions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Steps" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Steps" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Users" store:Type="Tables" Schema="dbo" />
@@ -22,24 +19,12 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Products_Product_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.FK_dbo_CookingProducts_dbo_Products_Product_Id">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="CookingProducts" EntitySet="CookingProducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.FK_dbo_CookingProducts_dbo_Steps_Step_Id">
-            <End Role="Steps" EntitySet="Steps" />
-            <End Role="CookingProducts" EntitySet="CookingProducts" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_Recipies_dbo_Users_User_UserID" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.FK_dbo_Recipies_dbo_Users_User_UserID">
             <End Role="Users" EntitySet="Users" />
             <End Role="Recipies" EntitySet="Recipies" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Steps_dbo_Recipies_Recepie_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.FK_dbo_Steps_dbo_Recipies_Recepie_Id">
             <End Role="Recipies" EntitySet="Recipies" />
-            <End Role="Steps" EntitySet="Steps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.FK_dbo_Steps_dbo_StepActions_StepAction_Id">
-            <End Role="StepActions" EntitySet="StepActions" />
             <End Role="Steps" EntitySet="Steps" />
           </AssociationSet>
         </EntityContainer>
@@ -53,23 +38,6 @@
           <Property Name="Recepie_Id" Type="int" />
           <Property Name="User_UserID" Type="int" />
         </EntityType>
-        <EntityType Name="CookingProducts">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Amount" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="Product_Id" Type="int" />
-          <Property Name="Step_Id" Type="int" />
-        </EntityType>
-        <EntityType Name="Products">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="QuantityType" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Recipies">
           <Key>
             <PropertyRef Name="Id" />
@@ -81,13 +49,6 @@
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="ImagesFolderUrl" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="StepActions">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="Steps">
           <Key>
             <PropertyRef Name="Id" />
@@ -95,9 +56,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrderOfPrecedence" Type="int" Nullable="false" />
           <Property Name="PreparationTime" Type="datetime" Nullable="false" />
-          <Property Name="Degrees" Type="int" Nullable="false" />
           <Property Name="Recepie_Id" Type="int" />
-          <Property Name="StepAction_Id" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -144,30 +103,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_CookingProducts_dbo_Products_Product_Id">
-          <End Role="Products" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Products" Multiplicity="0..1" />
-          <End Role="CookingProducts" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.CookingProducts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CookingProducts">
-              <PropertyRef Name="Product_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id">
-          <End Role="Steps" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Steps" Multiplicity="0..1" />
-          <End Role="CookingProducts" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.CookingProducts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Steps">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CookingProducts">
-              <PropertyRef Name="Step_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_Recipies_dbo_Users_User_UserID">
           <End Role="Users" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Users" Multiplicity="0..1" />
           <End Role="Recipies" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Recipies" Multiplicity="*" />
@@ -189,18 +124,6 @@
             </Principal>
             <Dependent Role="Steps">
               <PropertyRef Name="Recepie_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id">
-          <End Role="StepActions" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.StepActions" Multiplicity="0..1" />
-          <End Role="Steps" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Store.Steps" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StepActions">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Steps">
-              <PropertyRef Name="StepAction_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,17 +158,13 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db03b09a81b82c44bcbe0ba21a008dd95cModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="db03b09a81b82c44bcbe0ba21a008dd95cEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Comment" />
-          <EntitySet Name="CookingProducts" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.CookingProduct" />
-          <EntitySet Name="Products" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Product" />
           <EntitySet Name="Recipies" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Recipy" />
-          <EntitySet Name="StepActions" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.StepAction" />
           <EntitySet Name="Steps" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.Step" />
           <EntitySet Name="sysdiagrams" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.sysdiagram" />
           <EntitySet Name="Users" EntityType="db03b09a81b82c44bcbe0ba21a008dd95cModel.User" />
@@ -257,24 +176,12 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Products_Product_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_CookingProducts_dbo_Products_Product_Id">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="CookingProducts" EntitySet="CookingProducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_CookingProducts_dbo_Steps_Step_Id">
-            <End Role="Steps" EntitySet="Steps" />
-            <End Role="CookingProducts" EntitySet="CookingProducts" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_Recipies_dbo_Users_User_UserID" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Recipies_dbo_Users_User_UserID">
             <End Role="Users" EntitySet="Users" />
             <End Role="Recipies" EntitySet="Recipies" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Steps_dbo_Recipies_Recepie_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_Recipies_Recepie_Id">
             <End Role="Recipies" EntitySet="Recipies" />
-            <End Role="Steps" EntitySet="Steps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id" Association="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_StepActions_StepAction_Id">
-            <End Role="StepActions" EntitySet="StepActions" />
             <End Role="Steps" EntitySet="Steps" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
@@ -320,26 +227,6 @@
           <NavigationProperty Name="Recipy" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Comments_dbo_Recipies_Recepie_Id" FromRole="Comments" ToRole="Recipies" />
           <NavigationProperty Name="User" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Comments_dbo_Users_User_UserID" FromRole="Comments" ToRole="Users" />
         </EntityType>
-        <EntityType Name="CookingProduct">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Product_Id" Type="Int32" />
-          <Property Name="Step_Id" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_CookingProducts_dbo_Products_Product_Id" FromRole="CookingProducts" ToRole="Products" />
-          <NavigationProperty Name="Step" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_CookingProducts_dbo_Steps_Step_Id" FromRole="CookingProducts" ToRole="Steps" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="QuantityType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CookingProducts" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_CookingProducts_dbo_Products_Product_Id" FromRole="Products" ToRole="CookingProducts" />
-        </EntityType>
         <EntityType Name="Recipy">
           <Key>
             <PropertyRef Name="Id" />
@@ -354,14 +241,6 @@
           <NavigationProperty Name="User" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Recipies_dbo_Users_User_UserID" FromRole="Recipies" ToRole="Users" />
           <NavigationProperty Name="Steps" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Recipies" ToRole="Steps" />
         </EntityType>
-        <EntityType Name="StepAction">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Steps" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_StepActions_StepAction_Id" FromRole="StepActions" ToRole="Steps" />
-        </EntityType>
         <EntityType Name="Step">
           <Key>
             <PropertyRef Name="Id" />
@@ -369,13 +248,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="OrderOfPrecedence" Type="Int32" Nullable="false" />
           <Property Name="PreparationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Degrees" Type="Int32" Nullable="false" />
           <Property Name="Recepie_Id" Type="Int32" />
-          <Property Name="StepAction_Id" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="CookingProducts" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_CookingProducts_dbo_Steps_Step_Id" FromRole="Steps" ToRole="CookingProducts" />
           <NavigationProperty Name="Recipy" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Steps" ToRole="Recipies" />
-          <NavigationProperty Name="StepAction" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_StepActions_StepAction_Id" FromRole="Steps" ToRole="StepActions" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -423,30 +298,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_CookingProducts_dbo_Products_Product_Id">
-          <End Role="Products" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Product" Multiplicity="0..1" />
-          <End Role="CookingProducts" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.CookingProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CookingProducts">
-              <PropertyRef Name="Product_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CookingProducts_dbo_Steps_Step_Id">
-          <End Role="Steps" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Step" Multiplicity="0..1" />
-          <End Role="CookingProducts" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.CookingProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Steps">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CookingProducts">
-              <PropertyRef Name="Step_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_Recipies_dbo_Users_User_UserID">
           <End Role="Users" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.User" Multiplicity="0..1" />
           <End Role="Recipies" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Recipy" Multiplicity="*" />
@@ -468,18 +319,6 @@
             </Principal>
             <Dependent Role="Steps">
               <PropertyRef Name="Recepie_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Steps_dbo_StepActions_StepAction_Id">
-          <End Role="StepActions" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.StepAction" Multiplicity="0..1" />
-          <End Role="Steps" Type="db03b09a81b82c44bcbe0ba21a008dd95cModel.Step" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StepActions">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Steps">
-              <PropertyRef Name="StepAction_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -511,25 +350,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CookingProducts">
-            <EntityTypeMapping TypeName="db03b09a81b82c44bcbe0ba21a008dd95cModel.CookingProduct">
-              <MappingFragment StoreEntitySet="CookingProducts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
-                <ScalarProperty Name="Step_Id" ColumnName="Step_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="db03b09a81b82c44bcbe0ba21a008dd95cModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="QuantityType" ColumnName="QuantityType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Recipies">
             <EntityTypeMapping TypeName="db03b09a81b82c44bcbe0ba21a008dd95cModel.Recipy">
               <MappingFragment StoreEntitySet="Recipies">
@@ -542,23 +362,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="StepActions">
-            <EntityTypeMapping TypeName="db03b09a81b82c44bcbe0ba21a008dd95cModel.StepAction">
-              <MappingFragment StoreEntitySet="StepActions">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="db03b09a81b82c44bcbe0ba21a008dd95cModel.Step">
               <MappingFragment StoreEntitySet="Steps">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderOfPrecedence" ColumnName="OrderOfPrecedence" />
                 <ScalarProperty Name="PreparationTime" ColumnName="PreparationTime" />
-                <ScalarProperty Name="Degrees" ColumnName="Degrees" />
                 <ScalarProperty Name="Recepie_Id" ColumnName="Recepie_Id" />
-                <ScalarProperty Name="StepAction_Id" ColumnName="StepAction_Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -29,10 +29,7 @@ namespace Recipies.Data
         }
     
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<CookingProduct> CookingProducts { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Recipy> Recipies { get; set; }
-        public DbSet<StepAction> StepActions { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
