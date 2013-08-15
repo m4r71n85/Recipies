@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Recipies.Api.Models;
 using Recipies.Data;
 using Recipies.Repository;
 using System.Web.Http.Cors;
@@ -23,9 +24,21 @@ namespace Recipies.Api.Controllers
         }
 
         // GET api/Recipies
-        public IEnumerable<Recipy> GetRecipies()
+        public IEnumerable<ExposedRecipy> GetRecipies()
         {
-            return this.repository.GetAll();
+            var recipyEntities = this.repository.GetAll();
+
+            var recipyModels =
+                from recipyEntity in recipyEntities
+                select new ExposedRecipy()
+                {
+                    Name = recipyEntity.Name,
+                    Rating = recipyEntity.Rating,
+                    ImagesFolder = recipyEntity.ImagesFolderUrl,
+                    
+                };
+
+            return recipyModels.AsEnumerable();
         }
 
         // GET api/Recipies/5
