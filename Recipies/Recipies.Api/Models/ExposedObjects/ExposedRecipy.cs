@@ -10,5 +10,6 @@ namespace Recipies.Api.Models.ExposedObjects
         public string ImagesFolder { get; set; }
         public decimal CookingMinutes { get; set; }
         public string CreatedBy { get; set; }
+		public int RecipyID { get; set;  }
     }
 }

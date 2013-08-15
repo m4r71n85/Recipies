@@ -34,7 +34,8 @@ namespace Recipies.Api.Controllers
                     Rating = recipyEntity.Rating,
                     ImagesFolder = recipyEntity.ImagesFolderUrl,
                     CookingMinutes = recipyEntity.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime),
-                    CreatedBy = recipyEntity.User.UserName
+                    CreatedBy = recipyEntity.User.UserName,
+					RecipyID = recipyEntity.Id
                 };
 
             return recipyModels.AsEnumerable();
@@ -57,6 +58,7 @@ namespace Recipies.Api.Controllers
                 CreatedBy = recipy.User.UserName,
                 CookingMinutes = recipy.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime),
                 Rating = recipy.Rating,
+				RecipyID = recipy.Id,
                 ImagesFolder = recipy.ImagesFolderUrl,
                 Comments =
                     from comment in recipy.Comments
