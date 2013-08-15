@@ -66,7 +66,7 @@ namespace Recipies.Repository
             }
 
             this.dbContext.Users.Add(item);
-            user.SessionKey = sessionKey;
+            item.SessionKey = sessionKey;
             this.dbContext.SaveChanges();
 
             return sessionKey;

@@ -79,14 +79,14 @@ namespace Recipies.Api.Controllers
                     response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
                     return response;
                 }
-                catch (Exception)
+                catch (DBConcurrencyException)
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "An exception occured.");
                 }
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Model state is not valid.");
             }
         }
 
