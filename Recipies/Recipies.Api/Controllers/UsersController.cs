@@ -21,21 +21,32 @@ namespace Recipies.Api.Controllers
             this.repository = repository;
         }
 
-        // PUT api/Users/5
-        public HttpResponseMessage PutUser(string sessionKey)
+        // POST api/Users?login=true
+        public HttpResponseMessage Login(User user, string login)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    this.repository.Logout(sessionKey);
+                    string sessionKey = null;
+                    if (login == "true")
+                    {
+                        sessionKey = this.repository.Login(user);
+                    }
+
+                    if (sessionKey == null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    }
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, sessionKey);
+                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
+                    return response;
                 }
                 catch (Exception)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
             }
             else
             {
@@ -44,24 +55,36 @@ namespace Recipies.Api.Controllers
         }
 
         // POST api/Users
-        public HttpResponseMessage PostUser(User user)
+        public HttpResponseMessage Register(User user)
         {
             if (ModelState.IsValid)
             {
-                string sessionKey = this.repository.Login(user);
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, sessionKey);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
-                return response;
+                try
+                {
+                    string sessionKey = this.repository.Register(user);
+
+                    if (sessionKey == null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, "Username already exists.");
+                    }
+
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, sessionKey);
+                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
+                    return response;
+                }
+                catch (Exception)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
             }
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
-        
 
         // DELETE api/Users/5
-		public HttpResponseMessage DeleteUser(string sessionKey)
+		public HttpResponseMessage Logout(string sessionKey)
         {
             User user = null;
             try

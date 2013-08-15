@@ -14,6 +14,24 @@ namespace Recipies.Repository
             this.dbContext = dbContext;
         }
 
+        public bool CreateComment(int id, string sessionKey, Comment item)
+        {
+            User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();
+            if (user != null)
+            {
+                Recipy recipy = this.dbContext.Recipies.Find(id);
+                recipy.Comments.Add(item);
+                user.Comments.Add(item);
+                this.dbContext.Comments.Add(item);
+                this.dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Recipy GetById(int id)
         {
             return this.dbContext.Recipies.Single(x => x.Id == id);

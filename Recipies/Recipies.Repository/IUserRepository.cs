@@ -7,6 +7,7 @@ namespace Recipies.Repository
     {
         string Login(T item);
         void Logout(string sessionKey);
-        void Register(T item);
+        string Register(T item);
+        bool Find(T item);
     }
 }
