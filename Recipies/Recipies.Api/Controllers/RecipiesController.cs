@@ -33,7 +33,7 @@ namespace Recipies.Api.Controllers
                     Name = recipyEntity.Name,
                     Rating = recipyEntity.Rating,
                     ImagesFolder = recipyEntity.ImagesFolderUrl,
-                    CookingMinutes = recipyEntity.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime.Minutes),
+                    CookingMinutes = recipyEntity.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime),
                     CreatedBy = recipyEntity.User.UserName
                 };
 
@@ -55,7 +55,7 @@ namespace Recipies.Api.Controllers
                 Name = recipy.Name,
                 Description = recipy.Description,
                 CreatedBy = recipy.User.UserName,
-                CookingMinutes = recipy.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime.Minutes),
+                CookingMinutes = recipy.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime),
                 Rating = recipy.Rating,
                 ImagesFolder = recipy.ImagesFolderUrl,
                 Comments =
@@ -71,7 +71,7 @@ namespace Recipies.Api.Controllers
                     select new ExposedStep()
                     {
                         Description = step.Description,
-                        PreparationTime = step.PreparationTime.Minutes,
+                        PreparationTime = step.PreparationTime,
                         OrderOfPrecedence = orderIndex++
                     }
             };
@@ -81,7 +81,7 @@ namespace Recipies.Api.Controllers
         }
 
         // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, int? sessionkey, [FromBody]bool vote)
+        public HttpResponseMessage PutRecipy(int id, string sessionkey, [FromBody]string vote)
         {
             if (ModelState.IsValid)
             {
@@ -103,15 +103,21 @@ namespace Recipies.Api.Controllers
         }
 
         // POST api/Recipies/5
-        public HttpResponseMessage PostRecipy(int userId, Recipy recipy)
+        public HttpResponseMessage PostRecipy(string sessionKey, Recipy recipy)
         {
             if (ModelState.IsValid)
             {
-                recipy.User_UserID = userId;
-                this.repository.Add(recipy);
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
-                return response;
+                Recipy retRecipy = this.repository.Add(recipy, sessionKey);
+                if (retRecipy != null)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, recipy);
+                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = recipy.Id }));
+                    return response;
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                }
             }
             else
             {

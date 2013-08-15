@@ -18,6 +18,11 @@ namespace Recipies.Repository
 
         public abstract T Add(T item);
 
+        public virtual T Add(T item, string sessionKey)
+        {
+            return item;
+        }
+
         public void Update(int id, T item)
         {
             var entry = this.dbContext.Entry<T>(item);
@@ -49,7 +54,7 @@ namespace Recipies.Repository
 
         public abstract T Find(V item);
 
-        public virtual void Vote(int id, int? sessionKey, bool vote)
+        public virtual void Vote(int id, string sessionKey, string vote)
         {
         }
     }

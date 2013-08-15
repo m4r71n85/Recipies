@@ -41,13 +41,13 @@ namespace Recipies.Repository
             return this.dbContext.Recipies.Single(x => x.Name == item);
         }
 
-        public override void Vote(int id, int? sessionKey, bool vote)
+        public override void Vote(int id, string sessionKey, string vote)
         {
-            User user = this.dbContext.Users.Find(sessionKey);
+            User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();
             if (user != null)
             {
                 Recipy recipy = this.dbContext.Recipies.Find(id);
-                if (vote)
+                if (vote == "up")
                 {
                     recipy.Rating++;
                 }
@@ -56,6 +56,22 @@ namespace Recipies.Repository
                     recipy.Rating--;
                 }
                 this.dbContext.SaveChanges();
+            }
+        }
+
+        public override Recipy Add(Recipy item, string sessionKey)
+        {
+            User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();
+            if (user != null)
+            {
+                item.User = user;
+                Recipy recipy = this.dbContext.Recipies.Add(item);
+                this.dbContext.SaveChanges();
+                return recipy;
+            }
+            else
+            {
+                return null;
             }
         }
     }

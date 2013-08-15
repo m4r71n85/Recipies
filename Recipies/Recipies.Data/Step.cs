@@ -16,7 +16,7 @@ namespace Recipies.Data
     {
         public int Id { get; set; }
         public int OrderOfPrecedence { get; set; }
-        public System.TimeSpan PreparationTime { get; set; }
+        public decimal PreparationTime { get; set; }
         public Nullable<int> Recepie_Id { get; set; }
         public string Description { get; set; }
     
