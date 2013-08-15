@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using Recipies.Dropbox;
 
 namespace Recipies.Api.Controllers
 {
@@ -19,10 +20,15 @@ namespace Recipies.Api.Controllers
                 HttpPostedFile file = current.Request.Files[i];
                 Stream stream = file.InputStream;
 
-                using (var fileStream = File.Create(Path.GetTempPath() + '/' + file.FileName))
+                string fullFileName = Path.GetTempPath() + '/' + file.FileName;
+                using (var fileStream = File.Create(fullFileName))
                 {
                     stream.CopyTo(fileStream);
                 }  
+
+                // saved successfully
+                DropboxUploader uploader = new DropboxUploader();
+                uploader.Run(fullFileName);
             }
         }
     }

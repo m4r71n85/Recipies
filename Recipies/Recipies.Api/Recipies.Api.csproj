@@ -39,7 +39,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Social.Core, Version=1.0.1.35140, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spring.Social.Core.1.0.1\lib\net40-client\Spring.Social.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Social.Dropbox, Version=1.2.0.14840, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spring.Social.Dropbox.1.2.0\lib\net40-client\Spring.Social.Dropbox.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -177,6 +192,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ExposedObjects\ExposedComment.cs" />
+    <Compile Include="Models\ExposedObjects\ExposedKey.cs" />
     <Compile Include="Models\ExposedObjects\ExposedRecipy.cs" />
     <Compile Include="Models\ExposedObjects\ExposedRecipyExtended.cs" />
     <Compile Include="Models\ExposedObjects\ExposedStep.cs" />
@@ -184,6 +200,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Spring.Rest.txt" />
+    <Content Include="App_Readme\Spring.Social.Core.txt" />
+    <Content Include="App_Readme\Spring.Social.Dropbox.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -306,6 +325,10 @@
     <ProjectReference Include="..\Recipies.Data\Recipies.Data.csproj">
       <Project>{ef43bc51-57cd-435c-b05a-6ea1cb95908c}</Project>
       <Name>Recipies.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recipies.Dropbox\Recipies.Dropbox.csproj">
+      <Project>{eb892940-6130-4ff7-8649-f6d8e8ac81d7}</Project>
+      <Name>Recipies.Dropbox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Recipies.Repository\Recipies.Repository.csproj">
       <Project>{ebf386c9-202e-43e8-a027-1e0cefee4cf3}</Project>

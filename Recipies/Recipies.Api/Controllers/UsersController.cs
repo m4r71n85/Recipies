@@ -8,6 +8,7 @@ using System.Web.Http;
 using Recipies.Data;
 using Recipies.Repository;
 using System.Web.Http.Cors;
+using Recipies.Api.Models.ExposedObjects;
 
 namespace Recipies.Api.Controllers
 {
@@ -39,7 +40,10 @@ namespace Recipies.Api.Controllers
                         return Request.CreateResponse(HttpStatusCode.BadRequest);
                     }
 
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, sessionKey);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, new ExposedKey()
+                    {
+                        SessionKey = sessionKey
+                    });
                     response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
                     return response;
                 }
@@ -68,7 +72,10 @@ namespace Recipies.Api.Controllers
                         return Request.CreateResponse(HttpStatusCode.BadRequest, "Username already exists.");
                     }
 
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, sessionKey);
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, new ExposedKey()
+                    {
+                        SessionKey = sessionKey
+                    });
                     response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
                     return response;
                 }
