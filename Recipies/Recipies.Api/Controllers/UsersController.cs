@@ -12,7 +12,8 @@ using Recipies.Api.Models.ExposedObjects;
 
 namespace Recipies.Api.Controllers
 {
-    [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
+   // [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:54830", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
         private IUserRepository<User> repository;
