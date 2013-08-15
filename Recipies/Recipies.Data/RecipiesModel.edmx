@@ -55,7 +55,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrderOfPrecedence" Type="int" Nullable="false" />
-          <Property Name="PreparationTime" Type="datetime" Nullable="false" />
+          <Property Name="PreparationTime" Type="time" Nullable="false" />
           <Property Name="Recepie_Id" Type="int" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
@@ -247,7 +247,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="OrderOfPrecedence" Type="Int32" Nullable="false" />
-          <Property Name="PreparationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreparationTime" Type="Time" Nullable="false" />
           <Property Name="Recepie_Id" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Recipy" Relationship="db03b09a81b82c44bcbe0ba21a008dd95cModel.FK_dbo_Steps_dbo_Recipies_Recepie_Id" FromRole="Steps" ToRole="Recipies" />
