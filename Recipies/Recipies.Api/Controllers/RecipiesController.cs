@@ -82,8 +82,8 @@ namespace Recipies.Api.Controllers
             return expRecipy;
         }
 
-        // PUT api/Recipies/5
-        public HttpResponseMessage PutRecipy(int id, string sessionkey, [FromBody]string vote)
+        // PUT api/Recipies/5?sessionKey={0} "up" / "down"
+        public HttpResponseMessage Vote(int id, string sessionkey,string vote)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace Recipies.Api.Controllers
         }
 
         // POST api/Recipies/5
-        public HttpResponseMessage PostRecipy(string sessionKey, Recipy recipy)
+        public HttpResponseMessage CreateRecipy(string sessionKey, Recipy recipy)
         {
             if (ModelState.IsValid)
             {
@@ -120,6 +120,31 @@ namespace Recipies.Api.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        public HttpResponseMessage CreateComment(int id, string sessionkey, Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    bool result = this.repository.CreateComment(id, sessionkey, comment);
+                    if (!result)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User is not logged on. Session has expired.");
+                    }
+                }
+                catch (Exception)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             else
             {
