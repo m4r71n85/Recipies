@@ -177,10 +177,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ExposedComment.cs" />
-    <Compile Include="Models\ExposedRecipy.cs" />
-    <Compile Include="Models\ExposedStep.cs" />
-    <Compile Include="Models\ExposedUser.cs" />
+    <Compile Include="Models\ExposedObjects\ExposedComment.cs" />
+    <Compile Include="Models\ExposedObjects\ExposedRecipy.cs" />
+    <Compile Include="Models\ExposedObjects\ExposedStep.cs" />
+    <Compile Include="Models\ExposedObjects\ExposedUser.cs" />
+    <Compile Include="Models\ProvidedObjects\ProvidedRecipy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

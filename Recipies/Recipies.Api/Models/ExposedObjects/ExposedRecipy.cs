@@ -10,8 +10,7 @@ namespace Recipies.Api.Models.ExposedObjects
         public string Name { get; set; }
         public int Rating { get; set; }
         public string ImagesFolder { get; set; }
-
         public int CookingMinutes { get; set; }
-        public ExposedUser User { get; set; }
+        public string CreatedBy { get; set; }
     }
 }
