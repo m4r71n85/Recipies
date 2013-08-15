@@ -5,43 +5,26 @@ using Recipies.Data;
 
 namespace Recipies.Repository
 {
-    public class DbRecipieRepository : GeneralRepository<Recipy, string>
+    public class DbRecipieRepository : IRecipyRepository<Recipy>
     {
+        private db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext;
+
         public DbRecipieRepository(db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext)
-            : base(dbContext)
         {
+            this.dbContext = dbContext;
         }
 
-        public override Recipy Add(Recipy item)
-        {
-            Recipy recipy = this.dbContext.Recipies.Add(item);
-            this.dbContext.SaveChanges();
-            return recipy;
-        }
-
-        public override Recipy Remove(int id)
-        {
-            Recipy recipy = this.dbContext.Recipies.Remove(this.dbContext.Recipies.Find(id));
-            this.dbContext.SaveChanges();
-            return recipy;
-        }
-
-        public override Recipy GetById(int id)
+        public Recipy GetById(int id)
         {
             return this.dbContext.Recipies.Single(x => x.Id == id);
         }
 
-        public override IEnumerable<Recipy> GetAll()
+        public IEnumerable<Recipy> GetAll()
         {
             return this.dbContext.Recipies.AsEnumerable();
         }
 
-        public override Recipy Find(string item)
-        {
-            return this.dbContext.Recipies.Single(x => x.Name == item);
-        }
-
-        public override void Vote(int id, string sessionKey, string vote)
+        public void Vote(int id, string sessionKey, string vote)
         {
             User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();
             if (user != null)
@@ -59,7 +42,7 @@ namespace Recipies.Repository
             }
         }
 
-        public override Recipy Add(Recipy item, string sessionKey)
+        public Recipy Add(Recipy item, string sessionKey)
         {
             User user = this.dbContext.Users.Where(x => x.SessionKey == sessionKey).Select(x => x).FirstOrDefault();
             if (user != null)

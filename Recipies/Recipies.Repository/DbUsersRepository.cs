@@ -5,40 +5,31 @@ using System.Linq;
 
 namespace Recipies.Repository
 {
-    public class DbUsersRepository : GeneralRepository<User, string>
+    public class DbUsersRepository : IUserRepository<User>
     {
+        private db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext;
+
         public DbUsersRepository(db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext)
-            : base(dbContext)
         {
+            this.dbContext = dbContext;
         }
 
-        public override User Add(User item)
+        public string Login(User item)
         {
-            User returnedUser = this.dbContext.Users.Add(item);
-            this.dbContext.SaveChanges();
-            return returnedUser;
+            // TODO: Implement this method
+            throw new NotImplementedException();
         }
 
-        public override User Remove(int id)
+        public void Logout(string sessionKey)
         {
-            User user = this.dbContext.Users.Remove(this.dbContext.Users.Find(id));
-            this.dbContext.SaveChanges();
-            return user;
+            // TODO: Implement this method
+            throw new NotImplementedException();
         }
 
-        public override User GetById(int id)
+        public void Register(User item)
         {
-            return this.dbContext.Users.Where(x => x.UserID == id).Select(x => x).FirstOrDefault();
-        }
-
-        public override IEnumerable<User> GetAll()
-        {
-            return this.dbContext.Users.AsEnumerable();
-        }
-
-        public override User Find(string userName)
-        {
-            return this.dbContext.Users.Single(x => x.UserName == userName);
+            // TODO: Implement this method
+            throw new NotImplementedException();
         }
     }
 }

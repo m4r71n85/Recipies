@@ -14,41 +14,23 @@ namespace Recipies.Api.Controllers
     [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
-        private IRepository<User, string> repository;
+        private IUserRepository<User> repository;
 
-        public UsersController(IRepository<User, string> repository)
+        public UsersController(IUserRepository<User> repository)
         {
             this.repository = repository;
         }
 
-        // GET api/Users
-        public IEnumerable<User> GetUsers()
-        {
-            return this.repository.GetAll();
-        }
-
-        // GET api/Users/5
-		public User GetUser(int id)
-        {
-            User user = this.repository.GetById(id);
-            if (user == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
-
-            return user;
-        }
-
         // PUT api/Users/5
-        public HttpResponseMessage PutUser(int id, User user)
+        public HttpResponseMessage PutUser(string sessionKey)
         {
-            if (ModelState.IsValid && id == user.UserID)
+            if (ModelState.IsValid)
             {
                 try
                 {
-                    this.repository.Update(id, user);
+                    this.repository.Logout(sessionKey);
                 }
-                catch (DBConcurrencyException)
+                catch (Exception)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
@@ -66,8 +48,8 @@ namespace Recipies.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.repository.Add(user);
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
+                string sessionKey = this.repository.Login(user);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, sessionKey);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = user.UserID }));
                 return response;
             }
@@ -76,18 +58,15 @@ namespace Recipies.Api.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
+        
 
         // DELETE api/Users/5
-		public HttpResponseMessage DeleteUser(int id)
+		public HttpResponseMessage DeleteUser(string sessionKey)
         {
             User user = null;
             try
             {
-                user = this.repository.Remove(id);
-                if (user == null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
+                this.repository.Logout(sessionKey);
             }
             catch (Exception)
             {

@@ -11,8 +11,8 @@ namespace Recipies.Api
     public class DbDependencyResolver: IDependencyResolver
     {
         static db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
-        static IRepository<User, string> usersRepository = new DbUsersRepository(dbContext);
-        static IRepository<Recipy, string> recipiesRepository = new DbRecipieRepository(dbContext);
+        static IUserRepository<User> usersRepository = new DbUsersRepository(dbContext);
+        static IRecipyRepository<Recipy> recipiesRepository = new DbRecipieRepository(dbContext);
 
         public IDependencyScope BeginScope()
         {

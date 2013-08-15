@@ -14,9 +14,9 @@ namespace Recipies.Api.Controllers
     [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
     public class RecipiesController : ApiController
     {
-        private IRepository<Recipy, string> repository;
+        private IRecipyRepository<Recipy> repository;
 
-        public RecipiesController(IRepository<Recipy, string> repository)
+        public RecipiesController(IRecipyRepository<Recipy> repository)
         {
             this.repository = repository;
         }
@@ -123,26 +123,6 @@ namespace Recipies.Api.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
-        }
-
-        // DELETE api/Recipies/5
-        public HttpResponseMessage DeleteRecipy(int id)
-        {
-            Recipy recipy = null;
-            try
-            {
-                recipy = this.repository.Remove(id);
-                if (recipy == null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-            }
-            catch (Exception)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, recipy);
         }
 
         protected override void Dispose(bool disposing)

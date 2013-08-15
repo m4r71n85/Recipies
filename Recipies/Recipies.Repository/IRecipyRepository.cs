@@ -4,15 +4,11 @@ using System.Linq;
 
 namespace Recipies.Repository
 {
-	public interface IRepository<T, V>
-	{
-		T Add(T item);
+    public interface IRecipyRepository<T>
+    {
         T Add(T item, string sessionKey);
-		void Update(int id, T item);
-		T Remove(int id);
-		T GetById(int id);
-		IEnumerable<T> GetAll();
-        T Find(V item);
+        T GetById(int id);
+        IEnumerable<T> GetAll();
         void Vote(int id, string sessionKey, string vote);
-	}
+    }
 }
