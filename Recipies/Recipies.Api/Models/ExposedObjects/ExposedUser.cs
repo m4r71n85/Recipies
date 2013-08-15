@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Recipies.Api.Models
+namespace Recipies.Api.Models.ExposedObjects
 {
     public class ExposedUser
     {

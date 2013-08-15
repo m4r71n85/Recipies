@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Recipies.Api.Models;
+using Recipies.Api.Models.ExposedObjects;
 using Recipies.Data;
 using Recipies.Repository;
 using System.Web.Http.Cors;
 
 namespace Recipies.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:54830", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
     public class RecipiesController : ApiController
     {
         private IRepository<Recipy, string> repository;
@@ -35,7 +33,11 @@ namespace Recipies.Api.Controllers
                     Name = recipyEntity.Name,
                     Rating = recipyEntity.Rating,
                     ImagesFolder = recipyEntity.ImagesFolderUrl,
-                    
+                    CookingMinutes = recipyEntity.Steps.AsEnumerable<Step>().Sum(x => x.PreparationTime.Minutes),
+                    User = new ExposedUser()
+                    {
+                        Name = recipyEntity.User.NickName
+                    }
                 };
 
             return recipyModels.AsEnumerable();

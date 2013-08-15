@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Recipies.Data;
+using System.Web.Http.Cors;
 
 namespace Recipies.Api.Controllers
 {
+    [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
     public class StepsController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();

@@ -12,6 +12,7 @@ namespace Recipies.Api
     {
         static db03b09a81b82c44bcbe0ba21a008dd95cEntities dbContext = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
         static IRepository<User, string> usersRepository = new DbUsersRepository(dbContext);
+        static IRepository<Recipy, string> recipiesRepository = new DbRecipieRepository(dbContext);
 
         public IDependencyScope BeginScope()
         {
@@ -33,6 +34,10 @@ namespace Recipies.Api
             if (serviceType == typeof(UsersController))
             {
                 return new UsersController(usersRepository);
+            }
+            else if (serviceType == typeof(RecipiesController))
+            {
+                return new RecipiesController(recipiesRepository);
             }
             else
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Recipies.Api.Models
+namespace Recipies.Api.Models.ExposedObjects
 {
     public class ExposedStep
     {

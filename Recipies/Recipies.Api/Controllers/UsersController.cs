@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace Recipies.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:54830", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
         private IRepository<User, string> repository;

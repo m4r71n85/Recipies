@@ -8,10 +8,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Recipies.Data;
 
 namespace Recipies.Api.Controllers
 {
+    [EnableCors(origins: "http://recepiesclient.apphb.com", headers: "*", methods: "*")]
     public class CommentsController : ApiController
     {
         private db03b09a81b82c44bcbe0ba21a008dd95cEntities db = new db03b09a81b82c44bcbe0ba21a008dd95cEntities();
